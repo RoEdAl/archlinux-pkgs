@@ -1,0 +1,3 @@
+post_install () {
+  echo ">>> For example of how to use this plugin in ALSA see /usr/share/ladspa-bs2b-svn/bs2b.conf file"
+}
