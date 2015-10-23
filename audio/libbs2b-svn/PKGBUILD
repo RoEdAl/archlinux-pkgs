@@ -1,0 +1,32 @@
+pkgname=libbs2b-svn
+pkgver=r175
+pkgrel=1
+pkgdesc="Bauer stereophonic-to-binaural DSP effect library"
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url=http://bs2b.sourceforge.net
+license=('GPL')
+makedepends=('ladspa' 'subversion' 'automake')
+conflicts=('libbs2b')
+source=("svn://svn.code.sf.net/p/bs2b/code/trunk/libbs2b")
+md5sums=('SKIP')
+
+pkgver() {
+  cd libbs2b
+  local ver="$(svnversion)"
+  printf "r%s" "${ver//[[:alpha:]]}"
+}
+
+build() {
+    cd $srcdir/libbs2b
+    msg2 'Configure - autogen'
+    ./autogen.sh
+    msg2 'Configure - configure'
+    ./configure --prefix=/usr
+    msg2 'Building'
+    make ${MAKEFLAGS}
+}
+
+package() {
+    cd $srcdir/libbs2b
+    make ${MAKEFLAGS} DESTDIR=$pkgdir install
+}
