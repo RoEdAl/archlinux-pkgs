@@ -1,4 +1,5 @@
-# Maintainer: Volker Schatz <arch@my-name-without-hyphen.com>
+# Taken from https://aur.archlinux.org/packages/alsacap
+# Added only armv6h and armv7h architectures
 pkgname=alsacap
 pkgver=0
 pkgrel=1.1
