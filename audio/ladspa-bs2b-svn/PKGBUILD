@@ -1,0 +1,43 @@
+pkgname=ladspa-bs2b-svn
+pkgver=r175
+pkgrel=1
+pkgdesc="Bauer stereophonic-to-binaural DSP effect library - LADSPA plugin"
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url=http://bs2b.sourceforge.net
+license=('GPL')
+depends=('libbs2b-svn')
+conflicts=('ladspa-bs2b')
+makedepends=('ladspa' 'libbs2b-svn' 'subversion' 'automake')
+source=(
+	svn://svn.code.sf.net/p/bs2b/code/trunk/plugins/ladspa
+        configure.ac.patch
+	)
+md5sums=('SKIP'
+         '1ea26d8f4e7a8a52894db89cab344350')
+
+prepare() {
+    cd $srcdir/ladspa
+    patch < $srcdir/configure.ac.patch
+}
+
+pkgver() {
+  cd ladspa
+  local ver="$(svnversion)"
+  printf "r%s" "${ver//[[:alpha:]]}"
+}
+
+build() {
+    cd $srcdir/ladspa
+    msg2 'Configuration - autogen'
+    ./autogen.sh
+    msg2 'Configuration - configure'
+    ./configure --prefix=/usr
+    msg2 'Building'
+    make ${MAKEFLAGS}
+}
+
+package() {
+    cd $srcdir/ladspa
+    make ${MAKEFLAGS} DESTDIR=$pkgdir install
+}
+

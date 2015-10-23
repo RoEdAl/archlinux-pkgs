@@ -1,0 +1,11 @@
+--- configure.ac	2015-08-14 13:06:13.145026860 +0200
++++ configure.ac.new	2015-08-14 13:22:03.413069251 +0200
+@@ -5,7 +5,7 @@
+ AC_INIT([ladspa-bs2b], [0.9.1], [sebastian@pipping.org])
+ AC_CONFIG_AUX_DIR([build-aux])
+ AM_INIT_AUTOMAKE([1.10.1 -Wall foreign subdir-objects
+-                  dist-zip dist-bzip2 dist-lzma])
++                  dist-zip dist-bzip2 dist-xz])
+ AC_CONFIG_SRCDIR([src/plugin.c])
+ AC_CONFIG_HEADERS([config.h])
+ 
