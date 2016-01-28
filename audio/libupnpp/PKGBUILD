@@ -1,0 +1,25 @@
+_commit=e228440e2bb4f787259c64a6491f4fc5682dea7a
+_srcname=libupnpp-${_commit}
+pkgname=libupnpp
+pkgver=0.13.1
+pkgrel=1
+pkgdesc="A C++ wrapper for libupnp - used with upmpdcli or upplay"
+url="http://www.lesbonscomptes.com/upplay/downloads.html"
+arch=('x86_64' 'i686' 'armv6h' 'armv7h')
+license=('GPL2')
+makedepends=('automake')
+depends=('libupnp' 'expat' 'curl')
+source=("http://github.com/medoc92/libupnpp/archive/${_commit}.tar.gz")
+sha256sums=('766ba09659d7cb9c92ad4112820b9203c506666b20f8aafd06b50b63cee8afaf')
+
+build(){
+	cd "${srcdir}/${_srcname}"
+	./autogen.sh
+	./configure --prefix=/usr --sysconfdir=/etc
+	make
+}
+
+package(){
+	cd "${srcdir}/${_srcname}"
+	make DESTDIR="$pkgdir" install
+}

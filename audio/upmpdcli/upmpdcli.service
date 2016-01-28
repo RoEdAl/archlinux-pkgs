@@ -1,0 +1,14 @@
+[Unit]
+Description=UPnP Renderer front-end to MPD
+After=sound.target
+Requires=mpd.service
+After=mpd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/upmpdcli -c /etc/upmpdcli.conf
+User=upmpdcli
+Group=audio
+
+[Install]
+WantedBy=multi-user.target
