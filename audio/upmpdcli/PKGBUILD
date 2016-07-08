@@ -1,9 +1,9 @@
 # Maintainer: Mansour Behabadi <mansour@oxplot.com>
 
-_commit=4d06a3e706f6106cef7be5c876b98b23644ae901
+_commit=b771bbf4bbe4c05c5e163488460820326fcdd456
 _srcname=upmpdcli-${_commit}
 pkgname=upmpdcli
-pkgver=0.13.1
+pkgver=1.1.3
 pkgrel=1
 pkgdesc="A UPnP Media Renderer front-end for the Music Player Daemon (MPD)"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
@@ -20,7 +20,7 @@ source=(
         upmpdcli.service
 	)
 
-sha256sums=('8c4a746f3fbb707de74ee50aa5f1149f1abe00fc3e0582cd82f0057f6c3eef06'
+sha256sums=('9d745bec9997b67b5aeaea4e571e08a087c72686e1bdfee275fbbdaaea79a348'
             'c256258aefa9aa0347504e197aef9426849403dc0c64638fc154613a62d4c21c'
             '53e2f0a33e3692d9e33102ab44130060b7311c5dbea4cb0091528223706c04e7')
 
