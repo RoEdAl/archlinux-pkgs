@@ -6,7 +6,7 @@
 
 pkgname=minidlna-darkvater
 pkgver=1.1.6.r869
-pkgrel=1
+pkgrel=2
 pkgdesc="A DLNA/UPnP-AV Media server (aka ReadyDLNA)"
 arch=('i686' 'x86_64')
 url="http://sourceforge.net/projects/minidlna/"
@@ -20,11 +20,13 @@ install=minidlna-darkvater.install
 source=('minidlna-darkvater::git+http://github.com/Darkvater/minidlna.git#branch=features'
 	minidlna.service
 	minidlna.tmpfiles
-	minidlna.sysusers)
+	minidlna.sysusers
+	free-childrens-once-only.patch)
 md5sums=('SKIP'
          '1f53adef7dfa12c1d4636737366b1d39'
          'a61f97b037ea17555f6632b3ffd761ef'
-         '5b2a57160589dfd559a23b1a7f365a23')
+         '5b2a57160589dfd559a23b1a7f365a23'
+         '1e70541c3399b553cf95b05b6bf11b4c')
 
 pkgver() {
   cd "$pkgname"
@@ -34,6 +36,7 @@ pkgver() {
 prepare() {
   cd "$srcdir/$pkgname"
   sed -i 's|#user=.*|user=minidlna|g' minidlna.conf
+  patch -Np1 -i ../free-childrens-once-only.patch
 }
 
 build() {
