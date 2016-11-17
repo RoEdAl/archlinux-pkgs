@@ -5,38 +5,44 @@
 # Contributor: Kamil Kaminski <kyle@kkaminsk.com>
 
 pkgname=minidlna-darkvater
+_pkgver=1.1.6
 pkgver=1.1.6.r869
-pkgrel=2
-pkgdesc="A DLNA/UPnP-AV Media server (aka ReadyDLNA)"
-arch=('i686' 'x86_64')
+pkgrel=3
+pkgdesc="A DLNA/UPnP-AV Media server (aka ReadyDLNA) - Darkvater branch"
+arch=('i686' 'x86_64' 'armv6h' 'armv7h)
 url="http://sourceforge.net/projects/minidlna/"
 license=('GPL')
 depends=('libexif' 'libjpeg' 'libid3tag' 'flac' 'libvorbis' 'ffmpeg' 'sqlite')
 makedepends=('git')
 optdepends=('libiconv')
+conflicts=('minidlna')
 replaces=('minidlna')
+provides=("minidlna=${_pkgver}")
 backup=('etc/minidlna.conf')
 install=minidlna-darkvater.install
 source=('minidlna-darkvater::git+http://github.com/Darkvater/minidlna.git#branch=features'
 	minidlna.service
 	minidlna.tmpfiles
 	minidlna.sysusers
-	free-childrens-once-only.patch)
+	free-childrens-once-only.patch
+	albumart-serve.patch)
 md5sums=('SKIP'
          '1f53adef7dfa12c1d4636737366b1d39'
          'a61f97b037ea17555f6632b3ffd761ef'
          '5b2a57160589dfd559a23b1a7f365a23'
-         '1e70541c3399b553cf95b05b6bf11b4c')
+         '1e70541c3399b553cf95b05b6bf11b4c'
+         '96a2ece256c0cf688d6ecae917ac70c0')
 
 pkgver() {
   cd "$pkgname"
-  printf "1.1.6.r%s" "$(git rev-list --count HEAD)"
+  printf "${_pkgver}.r%s" "$(git rev-list --count HEAD)"
 }
 
 prepare() {
   cd "$srcdir/$pkgname"
   sed -i 's|#user=.*|user=minidlna|g' minidlna.conf
   patch -Np1 -i ../free-childrens-once-only.patch
+  patch -Np1 -i ../albumart-serve.patch
 }
 
 build() {
