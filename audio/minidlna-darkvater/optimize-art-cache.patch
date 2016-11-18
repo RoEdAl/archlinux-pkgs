@@ -1,5 +1,5 @@
 diff --git a/albumart.c b/albumart.c
-index 057899e..0b57c6b 100644
+index 057899e..3f93fd7 100644
 --- a/albumart.c
 +++ b/albumart.c
 @@ -61,12 +61,29 @@ char *get_path_from_image_size_type(const char *path, const image_size_type_t *i
@@ -10,7 +10,7 @@ index 057899e..0b57c6b 100644
 +art_cache_exists(const char *orig_path, const image_size_type_t *image_size_type, char **cache_file)
  {
 -	if( xasprintf(cache_file, "%s/art_cache%s", db_path, orig_path) < 0 )
-+	char *dot_pos, *slash_pos;
++	char *dot_pos;
 +
 +	if(xasprintf(cache_file, "%s/art_cache%s.JPEG_xxx.jpg", db_path, orig_path) < 0)
  		return 0;
@@ -22,7 +22,7 @@ index 057899e..0b57c6b 100644
 +	dot_pos=strrchr(*cache_file, '.');
 +	if (dot_pos)
 +	{
-+		slash_pos=strrchr(*cache_file, '/');
++		char *slash_pos=strrchr(*cache_file, '/');
 +		if (slash_pos > dot_pos) dot_pos=NULL;
 +	}
 +	if (dot_pos)
