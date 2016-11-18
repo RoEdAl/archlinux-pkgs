@@ -16,7 +16,7 @@ index b22e2a5..fc8bb18 100644
  				snprintf(dlna_buf, sizeof(dlna_buf), "http://%s:%d/AlbumArt/%s-%d.jpg", lan_addr[passed_args->iface].str, runtime_vars.port, album_art, 1);
  				append_with_attributes(str, "protocolInfo=\"http-get:*:image/jpeg:DLNA.ORG_PN=JPEG_SM\"", dlna_buf, "res");
 -				append_with_attributes(str, "dlna:profileID=\"JPEG_SM\" xmlns:dlna=\"urn:schemas-dlna-org:metadata-1-0/\"", dlna_buf, "upnp:albumArtURI");
-+				append_with_attributes(str, attributes, dlna_buf, "upnp:albumArtURI");
++				append_with_attributes(str, attribute, dlna_buf, "upnp:albumArtURI");
  
 +				attribute = (passed_args->filter & FILTER_UPNP_ALBUMARTURI_DLNA_PROFILEID) ? "dlna:profileID=\"JPEG_MED\" xmlns:dlna=\"urn:schemas-dlna-org:metadata-1-0/\"" : "";
  				snprintf(dlna_buf, sizeof(dlna_buf), "http://%s:%d/AlbumArt/%s-%d.jpg", lan_addr[passed_args->iface].str, runtime_vars.port, album_art, 2);
