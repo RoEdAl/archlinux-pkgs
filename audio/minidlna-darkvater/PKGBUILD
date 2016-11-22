@@ -7,7 +7,7 @@
 pkgname=minidlna-darkvater
 _pkgver=1.1.6
 pkgver=1.1.6.r869
-pkgrel=6
+pkgrel=7
 pkgdesc="A DLNA/UPnP-AV Media server (aka ReadyDLNA) - Darkvater branch"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url="http://sourceforge.net/projects/minidlna/"
@@ -27,7 +27,7 @@ source=('minidlna-darkvater::git+http://github.com/Darkvater/minidlna.git#branch
 	free-childrens-once-only.patch
 	albumart-serve.patch
 	find-embedded-art.patch
-	optimize-art-cache.patch
+	non-profiled-art.patch
 	profiled-album-art.patch)
 md5sums=('SKIP'
          '1f53adef7dfa12c1d4636737366b1d39'
@@ -36,7 +36,7 @@ md5sums=('SKIP'
          '1e70541c3399b553cf95b05b6bf11b4c'
          '96a2ece256c0cf688d6ecae917ac70c0'
          '839bca9e16e3500a8bc05e8c4f679330'
-         'f4995c009835a75b243514cd6c59227c'
+         '28a940cf5fdc8c580c454a76fcaeede0'
          '593ba14f960099021a22917ed3eab610')
 
 pkgver() {
@@ -50,7 +50,7 @@ prepare() {
   patch -Np1 -i ../free-childrens-once-only.patch
   patch -Np1 -i ../albumart-serve.patch
   patch -Np1 -i ../find-embedded-art.patch
-  patch -Np1 -i ../optimize-art-cache.patch
+  patch -Np1 -i ../non-profiled-art.patch
   patch -Np1 -i ../profiled-album-art.patch
 }
 
