@@ -28,7 +28,7 @@ source=('minidlna-darkvater::git+http://github.com/Darkvater/minidlna.git#branch
 	free-childrens-once-only.patch
 	albumart-serve.patch
 	find-embedded-art.patch
-	non-profiled-art.patch
+	profiled-album-art-naming.patch
 	profiled-album-art.patch)
 md5sums=('SKIP'
          '552fdccd165aa82290eeb05b5186a6e5'
@@ -52,7 +52,7 @@ prepare() {
   patch -Np1 -i ../free-childrens-once-only.patch
   patch -Np1 -i ../albumart-serve.patch
   patch -Np1 -i ../find-embedded-art.patch
-  patch -Np1 -i ../non-profiled-art.patch
+  patch -Np1 -i ../profiled-album-art-naming.patch
   patch -Np1 -i ../profiled-album-art.patch
 }
 
