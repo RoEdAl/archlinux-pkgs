@@ -1,12 +1,13 @@
 [Unit]
-Description=MiniDLNA server (aka ReadyDLNA)
+Description=MiniDLNA server (aka ReadyDLNA) - full rescan
 After=network.target
+Conflicts=minidlna.service
 
 [Service]
 Type=simple
 User=minidlna
 Group=minidlna
-ExecStart=/usr/bin/minidlnad -S
+ExecStart=/usr/bin/minidlnad -S -R
 ProtectSystem=full
 ProtectHome=on
 PrivateDevices=on

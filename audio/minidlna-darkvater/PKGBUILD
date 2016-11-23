@@ -7,7 +7,7 @@
 pkgname=minidlna-darkvater
 _pkgver=1.1.6
 pkgver=1.1.6.r869
-pkgrel=8
+pkgrel=9
 pkgdesc="A DLNA/UPnP-AV Media server (aka ReadyDLNA) - Darkvater branch"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url="http://sourceforge.net/projects/minidlna/"
@@ -22,6 +22,7 @@ backup=('etc/minidlna.conf')
 install=minidlna-darkvater.install
 source=('minidlna-darkvater::git+http://github.com/Darkvater/minidlna.git#branch=features'
 	minidlna.service
+	minidlna-r.service
 	minidlna.tmpfiles
 	minidlna.sysusers
 	free-childrens-once-only.patch
@@ -30,7 +31,8 @@ source=('minidlna-darkvater::git+http://github.com/Darkvater/minidlna.git#branch
 	non-profiled-art.patch
 	profiled-album-art.patch)
 md5sums=('SKIP'
-         '1f53adef7dfa12c1d4636737366b1d39'
+         '21433f1b7c96adfa9af938432358e6ec'
+         '059aad6f266234b7a55f5999f89d787d'
          'a61f97b037ea17555f6632b3ffd761ef'
          '5b2a57160589dfd559a23b1a7f365a23'
          '1e70541c3399b553cf95b05b6bf11b4c'
@@ -68,6 +70,7 @@ package() {
   install -Dm0644 "$srcdir"/minidlna.tmpfiles "$pkgdir"/usr/lib/tmpfiles.d/minidlna.conf
   install -Dm0644 "$srcdir"/minidlna.sysusers "$pkgdir"/usr/lib/sysusers.d/minidlna.conf
   install -Dm0644 "$srcdir"/minidlna.service "$pkgdir"/usr/lib/systemd/system/minidlna.service
+  install -Dm0644 "$srcdir"/minidlna-r.service "$pkgdir"/usr/lib/systemd/systemd/minidlna-r.service
   install -Dm644 "$srcdir"/$pkgname/minidlna.conf.5 "$pkgdir"/usr/share/man/man5/minidlna.conf.5
   install -Dm644 "$srcdir"/$pkgname/minidlnad.8 "$pkgdir"/usr/share/man/man8/minidlnad.8
 }
