@@ -31,7 +31,7 @@ source=('minidlna-darkvater::git+http://github.com/Darkvater/minidlna.git#branch
 	non-profiled-art.patch
 	profiled-album-art.patch)
 md5sums=('SKIP'
-         '21433f1b7c96adfa9af938432358e6ec'
+         '552fdccd165aa82290eeb05b5186a6e5'
          '059aad6f266234b7a55f5999f89d787d'
          'a61f97b037ea17555f6632b3ffd761ef'
          '5b2a57160589dfd559a23b1a7f365a23'
@@ -70,7 +70,7 @@ package() {
   install -Dm0644 "$srcdir"/minidlna.tmpfiles "$pkgdir"/usr/lib/tmpfiles.d/minidlna.conf
   install -Dm0644 "$srcdir"/minidlna.sysusers "$pkgdir"/usr/lib/sysusers.d/minidlna.conf
   install -Dm0644 "$srcdir"/minidlna.service "$pkgdir"/usr/lib/systemd/system/minidlna.service
-  install -Dm0644 "$srcdir"/minidlna-r.service "$pkgdir"/usr/lib/systemd/systemd/minidlna-r.service
+  install -m0644 "$srcdir"/minidlna-r.service "$pkgdir"/usr/lib/systemd/system/minidlna-r.service
   install -Dm644 "$srcdir"/$pkgname/minidlna.conf.5 "$pkgdir"/usr/share/man/man5/minidlna.conf.5
   install -Dm644 "$srcdir"/$pkgname/minidlnad.8 "$pkgdir"/usr/share/man/man8/minidlnad.8
 }

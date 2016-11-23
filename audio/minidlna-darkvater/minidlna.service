@@ -1,6 +1,7 @@
 [Unit]
 Description=MiniDLNA server (aka ReadyDLNA)
 After=network.target
+Conflicts=minidlna-r.service
 
 [Service]
 Type=simple
