@@ -1,25 +1,24 @@
-_commit=b4835f0ef67fc62607e85ee816989d9cf9f45d78
-_srcname=libupnpp-${_commit}
+_commit=d845598f5aa3ba40a20cad5442d174a374d9a691
 pkgname=libupnpp
-pkgver=0.14.1
-pkgrel=1
+pkgver=0.15.1
+pkgrel=2
 pkgdesc="A C++ wrapper for libupnp - used with upmpdcli or upplay"
-url="http://www.lesbonscomptes.com/upplay/downloads.html"
+url="https://github.com/medoc92/libupnpp"
 arch=('x86_64' 'i686' 'armv6h' 'armv7h')
 license=('GPL2')
-makedepends=('automake')
+makedepends=('git' 'automake')
 depends=('libupnp' 'expat' 'curl')
-source=("http://github.com/medoc92/libupnpp/archive/${_commit}.tar.gz")
-sha256sums=('3678ddc9abeb23ee709017687b95c2f865cfa2e0ebe5ce6098d3b416f4f67a95')
+source=("git://github.com/medoc92/libupnpp.git#commit=${_commit}")
+sha256sums=('SKIP')
 
 build(){
-	cd "${srcdir}/${_srcname}"
+	cd "${srcdir}/${pkgname}"
 	./autogen.sh
 	./configure --prefix=/usr --sysconfdir=/etc
 	make
 }
 
 package(){
-	cd "${srcdir}/${_srcname}"
+	cd "${srcdir}/${pkgname}"
 	make DESTDIR="$pkgdir" install
 }
