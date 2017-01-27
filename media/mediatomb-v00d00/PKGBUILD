@@ -1,12 +1,12 @@
 pkgname=mediatomb-v00d00
 _pkgver=0.13.0
 pkgver=0.13.0.r2328
-pkgrel=2
+pkgrel=3
 pkgdesc='Free UPnP/DLNA media server'
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url='http://github.com/v00d00/mediatomb'
 license=('GPL')
-depends=('libupnp-git>=1.8.0' 'libutil-linux' 'expat' 'sqlite3' 'curl' 'taglib>=1.11.1' 'file' 'ffmpeg' 'libexif')
+depends=('libupnp-git>=1.8.0' 'libutil-linux' 'expat' 'sqlite3' 'curl' 'taglib>=1.11.1' 'file' 'ffmpeg' 'libexif' 'zlib')
 makedepends=('cmake' 'git')
 backup=('etc/conf.d/mediatomb')
 conflicts=('mediatomb')
