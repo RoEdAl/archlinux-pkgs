@@ -1,7 +1,7 @@
 pkgname=mediatomb-v00d00
 _pkgver=0.13.0
 pkgver=0.13.0.r2328
-pkgrel=3
+pkgrel=4
 pkgdesc='Free UPnP/DLNA media server'
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url='http://github.com/v00d00/mediatomb'
@@ -20,8 +20,8 @@ source=("mediatomb-v00d00::git+http://github.com/v00d00/mediatomb"
         'upnp-message.path')
 sha256sums=('SKIP'
             '99e2602eebb9f5236107b0bee473a4187c7df7732745ad83542a3dcca9cb7d5a'
-            'ce31379ebdbad1dead652ac209ee479e83a2e0ac09fc88690b83b675d82324e9'
-            'adc46d69ab240bb907fd363b13035d88e1a1cda2d6e223692c9a01d8e1309707'
+            'cfb32b51761a53f5031d7746dea67461f4a58a7d85537eb608885853026e2850'
+            'e3f11ddb860407fe439b2bf7792c97b426a21aadea1c6babdd241b4629c5f60c'
             '10aadea967e068f6220936bd96189aa657476d3871aca4ecfeeb89b3c83f6338')
 
 pkgver() {

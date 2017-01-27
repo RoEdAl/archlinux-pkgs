@@ -4,10 +4,11 @@ After=network.target
 
 [Service]
 EnvironmentFile=/etc/conf.d/mediatomb
-ExecStart=/usr/bin/mediatomb -p $MT_PORT -u $MT_USER -g $MT_GROUP \
-  -P $MT_PIDFILE -m $MT_HOME -f $MT_CFGDIR $MT_OPTIONS
+ExecStart=/usr/bin/mediatomb -p $MT_PORT -P /run/mediatomb/pid -f $MT_CFGDIR $MT_OPTIONS
+RuntimeDirectory=mediatomb
 Restart=on-failure
 RestartSec=5
+User=mediatomb
 
 [Install]
 WantedBy=multi-user.target
