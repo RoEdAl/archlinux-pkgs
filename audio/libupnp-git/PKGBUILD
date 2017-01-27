@@ -1,34 +1,29 @@
-pkgname=libupnp-github
+pkgname=libupnp-git
 pkgver=1.8.1
-pkgrel=1
+pkgrel=2
 _commit='eed7ec4aaab110beda25dbee539a1ed933b72c87'
-_srcname="pupnp-${_commit}"
-pkgdesc="Portable Open Source UPnP Development Kit"
+pkgdesc="Portable Open Source UPnP Development Kit (git)"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url="http://pupnp.sourceforge.net/"
 license=('BSD')
-depends=('glibc')
+depends=('glibc' 'openssl')
 makedepends=('pkgconfig')
-conflicts=('libupnp')
-replaces=('libupnp')
-provides=("libupnp=${pkgver}")
-source=("http://github.com/mrjimenez/pupnp/archive/${_commit}.tar.gz")
-md5sums=('f9460a05333bebcf994721a121041e16')
+source=("git://github.com/mrjimenez/pupnp.git#commit=${_commit}")
+md5sums=('SKIP')
 
 prepare() {
-  cd "$srcdir/${_srcname}"
+  cd "${srcdir}/pupnp"
   autoreconf -vi
 }
 
 build() {
-  cd "${srcdir}/${_srcname}"
-  ./configure --prefix=/usr --enable-ipv6
+  cd "${srcdir}/pupnp"
+  ./configure --prefix=/usr --enable-ipv6 --disable-samples --enable-openssl
   make
 }
 
 package() {
-  cd "${srcdir}/${_srcname}"
+  cd "${srcdir}/pupnp"
   make DESTDIR=${pkgdir} install
   install -Dm644 LICENSE ${pkgdir}/usr/share/licenses/custom/${pkgname}/LICENSE
 }
-
