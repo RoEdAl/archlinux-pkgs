@@ -2,7 +2,7 @@
 _commit=ac9940370cce01e00bb3628c5b714402af725b13
 pkgname=upmpdcli
 pkgver=1.2.12
-pkgrel=1
+pkgrel=2
 pkgdesc="A UPnP Media Renderer front-end for the Music Player Daemon (MPD)"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url="http://www.lesbonscomptes.com/upmpdcli/"
@@ -15,14 +15,16 @@ install=upmpdcli.install
 source=("git://github.com/medoc92/upmpdcli.git#commit=${_commit}"
         mpd.png
         upmpdcli.service
-	)
+	ndebug.patch )
 
 sha256sums=('SKIP'
             'c256258aefa9aa0347504e197aef9426849403dc0c64638fc154613a62d4c21c'
-            '53e2f0a33e3692d9e33102ab44130060b7311c5dbea4cb0091528223706c04e7')
+            '53e2f0a33e3692d9e33102ab44130060b7311c5dbea4cb0091528223706c04e7'
+            '2b40461f3f68f5816a167e4a3658e7cc816536e9c5728e2844d710b9f5e1d192')
 
 prepare() {
         cd "${srcdir}/${pkgname}"
+	patch -Np1 -i ../ndebug.patch
         ./autogen.sh
 }
 
