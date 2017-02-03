@@ -1,13 +1,13 @@
 pkgname=mediatomb-v00d00
 _pkgver=0.13.0
-pkgver=0.13.0.r2332
+pkgver=0.13.0.r2348
 pkgrel=2
 pkgdesc='Free UPnP/DLNA media server'
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url='http://github.com/v00d00/mediatomb'
 license=('GPL')
-depends=('libupnp-git>=1.8.0' 'libutil-linux' 'expat' 'sqlite3' 'curl' 'taglib>=1.11.1' 'file' 'ffmpeg' 'libexif' 'zlib')
-makedepends=('cmake>=3.1.0' 'git')
+depends=('libupnp-git>=1.8.0' 'libutil-linux' 'expat' 'sqlite3' 'curl' 'taglib>=1.11.1' 'file' 'ffmpeg' 'libexif' 'zlib' 'js185')
+makedepends=('cmake>=3.2.0' 'git')
 backup=('etc/conf.d/mediatomb')
 conflicts=('mediatomb')
 replaces=('mediatomb')
@@ -16,13 +16,11 @@ install=mediatomb.install
 source=("mediatomb-v00d00::git+http://github.com/v00d00/mediatomb"
         'mediatomb.sysusers'
         'mediatomb.service'
-        'mediatomb.conf'
-        'upnp-message.path')
+        'mediatomb.conf')
 sha256sums=('SKIP'
             '99e2602eebb9f5236107b0bee473a4187c7df7732745ad83542a3dcca9cb7d5a'
             'cfb32b51761a53f5031d7746dea67461f4a58a7d85537eb608885853026e2850'
-            'e3f11ddb860407fe439b2bf7792c97b426a21aadea1c6babdd241b4629c5f60c'
-            '10aadea967e068f6220936bd96189aa657476d3871aca4ecfeeb89b3c83f6338')
+            'e3f11ddb860407fe439b2bf7792c97b426a21aadea1c6babdd241b4629c5f60c')
 
 pkgver() {
   cd "${srcdir}/${pkgname}"
@@ -30,10 +28,7 @@ pkgver() {
 }
 
 prepare() {
-  cd "${srcdir}/${pkgname}"
-  patch -Np1 -i ../upnp-message.path
-
-  cd ..
+  cd "${srcdir}"
   mkdir build
   cd build
 
@@ -41,7 +36,7 @@ prepare() {
         -DWITH_MAGIC=1 \
         -DWITH_MYSQL=0 \
         -DWITH_CURL=1 \
-        -DWITH_JS=0 \
+        -DWITH_JS=1 \
         -DWITH_TAGLIB=1 \
         -DWITH_AVCODEC=1 \
         -DWITH_DVDNAV=0 \
