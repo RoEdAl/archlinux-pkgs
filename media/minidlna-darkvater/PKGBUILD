@@ -6,13 +6,13 @@
 
 pkgname=minidlna-darkvater
 _pkgver=1.1.6
-pkgver=1.1.6.r878
+pkgver=1.1.6.r921
 pkgrel=1
 pkgdesc="A DLNA/UPnP-AV Media server (aka ReadyDLNA) - Darkvater branch"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url="http://sourceforge.net/projects/minidlna/"
 license=('GPL')
-depends=('libexif' 'libjpeg' 'libid3tag' 'flac' 'libvorbis' 'ffmpeg' 'sqlite' 'wavpack>=5.0.0')
+depends=('libid3tag' 'flac' 'libvorbis' 'ffmpeg' 'sqlite' 'wavpack>=5.0.0')
 makedepends=('git')
 optdepends=('libiconv')
 conflicts=('minidlna')
