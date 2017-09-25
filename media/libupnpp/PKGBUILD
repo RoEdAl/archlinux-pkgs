@@ -1,14 +1,14 @@
-_commit=423769ecd822436533e91db0712082760f7acd39
+_commit=f6177deb19a7ce8dc269452bba7896071e0cd115
 pkgname=libupnpp
-pkgver=0.15.1
-pkgrel=4
+pkgver=0.15.3
+pkgrel=5
 pkgdesc="A C++ wrapper for libupnp - used with upmpdcli or upplay"
-url="https://github.com/medoc92/libupnpp"
+url="https://www.lesbonscomptes.com/upmpdcli/index.html"
 arch=('x86_64' 'i686' 'armv6h' 'armv7h')
 license=('GPL2')
 makedepends=('git' 'automake')
 depends=('libupnp' 'expat' 'curl')
-source=("git://github.com/medoc92/libupnpp.git#commit=${_commit}"
+source=("libupnpp::git+http://@opensourceprojects.eu/git/p/libupnpp/code#commit=${_commit}"
 	'ndebug.patch'
 	'missing-macros.patch')
 sha256sums=('SKIP'

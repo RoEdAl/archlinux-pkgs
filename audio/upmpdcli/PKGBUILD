@@ -1,18 +1,18 @@
 
-_commit=ac9940370cce01e00bb3628c5b714402af725b13
+_commit=c34690ed5283eb9cc660e75f4cc679ced7bd502b
 pkgname=upmpdcli
-pkgver=1.2.12
-pkgrel=2
+pkgver=1.2.15
+pkgrel=3
 pkgdesc="A UPnP Media Renderer front-end for the Music Player Daemon (MPD)"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 url="http://www.lesbonscomptes.com/upmpdcli/"
 license=('GPL2')
 makedepends=('git' 'automake')
-depends=('libmpdclient' 'libupnpp>=0.15.1' 'libmicrohttpd' 'jsoncpp')
+depends=('libmpdclient' 'libupnpp>=0.15.3' 'libmicrohttpd' 'jsoncpp')
 optdepends=('mpd' 'python2')
 backup=('etc/upmpdcli.conf')
 install=upmpdcli.install
-source=("git://github.com/medoc92/upmpdcli.git#commit=${_commit}"
+source=("upmpdcli::git+http://@opensourceprojects.eu/git/p/upmpdcli/code#commit=${_commit}"
         mpd.png
         upmpdcli.service
 	ndebug.patch )
