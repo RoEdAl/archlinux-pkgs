@@ -1,0 +1,10 @@
+[Unit]
+Description=IPv4 pseudo-bridge routing daemon
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/conf.d/relayd
+ExecStart=/usr/sbin/relayd $RELAYD_OPTS
+
+[Install]
+WantedBy=multi-user.target

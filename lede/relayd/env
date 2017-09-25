@@ -1,0 +1,19 @@
+#
+# Options:
+#         -d              Enable debug messages
+#         -i <ifname>     Add an interface for relaying
+#         -I <ifname>     Same as -i, except with ARP cache and host route management
+#                         You need to specify at least two interfaces
+#         -G <ip>         Set a gateway IP for clients
+#         -R <gateway>:<net>/<mask>
+#                         Add a static route for <net>/<mask> via <gateway>
+#         -t <timeout>    Host entry expiry timeout
+#         -p <tries>      Number of ARP ping attempts before considering a host dead
+#         -T <table>      Set routing table number for automatically added routes
+#         -B              Enable broadcast forwarding
+#         -D              Enable DHCP forwarding
+#         -P              Disable DHCP options parsing
+#         -L <ipaddr>     Enable local access using <ipaddr> as source address
+
+RELAYD_OPTS=-I eth0 -I wlan0 -B -D -L 192.168.1.22
+

@@ -1,0 +1,53 @@
+pkgname=relayd
+pkgver=20160207
+pkgrel=1
+pkgdesc='IPv4 pseudo-bridge routing daemon'
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url='http://git.lede-project.org/?p=project/relayd.git;a=summary'
+license=('GPLv2')
+depends=('libubox')
+makedepends=('cmake>=2.8.0' 'git')
+source=('relayd::git://git.lede-project.org/project/relayd.git'
+    cmake-bin-install.patch
+    env
+    relayd.service
+ )
+sha256sums=('SKIP'
+            '0885437459ef4d589ef959f9eca169994c0fc057ae1fed98c7a9161fb0b7ac81'
+            '691afb5864951868d97b70e84fd5b808a591541c432d9776d052a4522f8c502f'
+            'a733c4abb9207facbf3086ff6ce9b1ba2d11eb521eb2e7442476ae737358d57e')
+
+pkgver() {
+  cd "${srcdir}/${pkgname}"
+  git log -1 --format=%cd --date=short|tr -d -
+}
+
+prepare() {
+  cd "${srcdir}"
+  
+  cd "${pkgname}"
+  patch -Np1 -i ../cmake-bin-install.patch
+  cd ..
+  
+  [ -d "${pkgname}-build" ] || mkdir "${pkgname}-build"
+  cd "${pkgname}-build"
+
+  cmake ../${pkgname} \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=MINSIZEREL
+}
+
+build() {
+  cd "${srcdir}/${pkgname}-build"
+  make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-build"
+  make DESTDIR="${pkgdir}" install
+  
+  cd ..  
+  install -Dm644 env "$pkgdir/etc/conf.d/relayd"
+  install -Dm644 relayd.service "$pkgdir/usr/lib/systemd/system/relayd.service"
+}
+
