@@ -1,10 +1,10 @@
-_commit=f6177deb19a7ce8dc269452bba7896071e0cd115
+_commit=c4af84d6614b844ebccabfe0a61f782c5f5eaa04
 pkgname=libupnpp
-pkgver=0.15.3
-pkgrel=5
+pkgver=0.16.0
+pkgrel=1
 pkgdesc="A C++ wrapper for libupnp - used with upmpdcli or upplay"
 url="https://www.lesbonscomptes.com/upmpdcli/index.html"
-arch=('x86_64' 'i686' 'armv6h' 'armv7h')
+arch=('x86_64' 'i686' 'armv6h' 'armv7h' 'aarch64')
 license=('GPL2')
 makedepends=('git' 'automake')
 depends=('libupnp' 'expat' 'curl')
