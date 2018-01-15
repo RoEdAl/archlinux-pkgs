@@ -1,14 +1,14 @@
 
-_commit=c34690ed5283eb9cc660e75f4cc679ced7bd502b
+_commit=ea9316ecae9417ed015bcffe0296d5abcf0a0d8c
 pkgname=upmpdcli
 pkgver=1.2.15
-pkgrel=3
+pkgrel=4
 pkgdesc="A UPnP Media Renderer front-end for the Music Player Daemon (MPD)"
-arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+arch=('i686' 'x86_64' 'armv6h' 'armv7h' 'aarch64')
 url="http://www.lesbonscomptes.com/upmpdcli/"
 license=('GPL2')
 makedepends=('git' 'automake')
-depends=('libmpdclient' 'libupnpp>=0.15.3' 'libmicrohttpd' 'jsoncpp')
+depends=('libmpdclient' 'libupnpp>=0.16.0' 'libmicrohttpd' 'jsoncpp')
 optdepends=('mpd' 'python2')
 backup=('etc/upmpdcli.conf')
 install=upmpdcli.install
@@ -40,4 +40,7 @@ package() {
 	make DESTDIR="$pkgdir" install
 	install -Dm644 ../mpd.png ${pkgdir}/usr/share/upmpdcli/icon.png
 	install -Dm644 ../upmpdcli.service ${pkgdir}/usr/lib/systemd/system/upmpdcli.service
+
+	# remove all plugins
+        rm -rf ${pkgdir}/usr/share/upmpdcli/cdplugins/*
 }
