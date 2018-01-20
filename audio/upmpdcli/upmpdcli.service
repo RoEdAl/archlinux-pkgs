@@ -1,14 +1,20 @@
 [Unit]
 Description=UPnP Renderer front-end to MPD
-After=sound.target
-Requires=mpd.service
-After=mpd.service
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/upmpdcli -c /etc/upmpdcli.conf
 User=upmpdcli
-Group=audio
+# disallow writing to /usr, /bin, /sbin, ...
+ProtectSystem=yes
+
+# more paranoid security settings
+NoNewPrivileges=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+ProtectKernelModules=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+RestrictNamespaces=yes
 
 [Install]
 WantedBy=multi-user.target
