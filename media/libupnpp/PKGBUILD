@@ -1,6 +1,6 @@
-_commit=c4af84d6614b844ebccabfe0a61f782c5f5eaa04
+_commit=505aae04cf4a1f67d52ac579cd423dfa6284015e
 pkgname=libupnpp
-pkgver=0.16.0
+pkgver=0.16.1
 pkgrel=1
 pkgdesc="A C++ wrapper for libupnp - used with upmpdcli or upplay"
 url="https://www.lesbonscomptes.com/upmpdcli/index.html"
