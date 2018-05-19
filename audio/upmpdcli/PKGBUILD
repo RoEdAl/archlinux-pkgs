@@ -2,7 +2,7 @@
 _commit=ad999c5fa3833be1a5796c50c70cf6f69b2e71ad
 pkgname=upmpdcli
 pkgver=1.2.16
-pkgrel=1
+pkgrel=2
 pkgdesc="A UPnP Media Renderer front-end for the Music Player Daemon (MPD)"
 arch=('x86_64' 'armv6h' 'armv7h' 'aarch64')
 url="http://www.lesbonscomptes.com/upmpdcli/"
@@ -19,7 +19,7 @@ source=("upmpdcli::git+http://@opensourceprojects.eu/git/p/upmpdcli/code#commit=
 
 sha256sums=('SKIP'
             'c256258aefa9aa0347504e197aef9426849403dc0c64638fc154613a62d4c21c'
-            'd81b0ba49560bbc27812be18ac67d7a7abf5c88c56b23529635e785737da0822'
+            '89b56845c3e937471769bc9507519f1ec27d0b64ebbb455e0ea06a7ad46c6f70'
             '2b40461f3f68f5816a167e4a3658e7cc816536e9c5728e2844d710b9f5e1d192')
 
 prepare() {
