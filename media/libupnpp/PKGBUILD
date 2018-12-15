@@ -1,35 +1,39 @@
-_commit=505aae04cf4a1f67d52ac579cd423dfa6284015e
+# Maintainer: Edmunt Pienkowsky <roed@onet.eu>
+
 pkgname=libupnpp
 pkgver=0.16.1
-pkgrel=1
+pkgrel=2
 pkgdesc="A C++ wrapper for libupnp - used with upmpdcli or upplay"
 url="https://www.lesbonscomptes.com/upmpdcli/index.html"
 arch=('x86_64' 'i686' 'armv6h' 'armv7h' 'aarch64')
 license=('GPL2')
 makedepends=('git' 'automake')
 depends=('libupnp' 'expat' 'curl')
-source=("libupnpp::git+http://@opensourceprojects.eu/git/p/libupnpp/code#commit=${_commit}"
+source=("http://www.lesbonscomptes.com/upmpdcli/downloads/${pkgname}-${pkgver}.tar.gz"
 	'ndebug.patch'
 	'missing-macros.patch')
-sha256sums=('SKIP'
+sha256sums=('d2ab5a4bb6df035ddddd11542bd4631ab7031354259145f07fbc3c56a8f50fac'
             'fff9b9305e3ee33f3e61e55800be577d1f69408a9a5c07f0f6962069f99060fc'
             '04fe8e0d7034c7fb903345174ef1d54f9a0d681830ebfcdfa5017513bf85af80')
 
 prepare(){
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
 	patch -Np1 -i ../ndebug.patch
 	patch -Np1 -i ../missing-macros.patch
 	./autogen.sh
 }
 
 build(){
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
 	./configure --prefix=/usr --sysconfdir=/etc
 	make libupnpp/config.h
 	make
 }
 
 package(){
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
 	make DESTDIR="$pkgdir" install
 }
