@@ -1,54 +1,58 @@
+# Maintainer: Edmunt Pienkowsky <roed@onet.eu>
 
-_commit=ad999c5fa3833be1a5796c50c70cf6f69b2e71ad
 pkgname=upmpdcli
-pkgver=1.2.16
-pkgrel=2
+pkgver=1.3.8
+pkgrel=1
 pkgdesc="A UPnP Media Renderer front-end for the Music Player Daemon (MPD)"
 arch=('x86_64' 'armv6h' 'armv7h' 'aarch64')
 url="http://www.lesbonscomptes.com/upmpdcli/"
-license=('GPL2')
+license=('LGPL')
 makedepends=('git' 'automake')
 depends=('libmpdclient' 'libupnpp>=0.16.1' 'libmicrohttpd' 'jsoncpp' 'curl')
 optdepends=('mpd' 'python2')
 backup=('etc/upmpdcli.conf')
-install=upmpdcli.install
-source=("upmpdcli::git+http://@opensourceprojects.eu/git/p/upmpdcli/code#commit=${_commit}"
-        mpd.png
-        upmpdcli.service
-	ndebug.patch )
+source=("http://www.lesbonscomptes.com/upmpdcli/downloads/${pkgname}-${pkgver}.tar.gz"
+        'mpd.png'
+        'upmpdcli.service'
+	'upmpdcli.sysusers'
+	'ndebug.patch'
+)
 
-sha256sums=('SKIP'
+sha256sums=('c661c0aa68e156f355954ec794584cd75398dafb5dd6cfc29e1c092187c7de74'
             'c256258aefa9aa0347504e197aef9426849403dc0c64638fc154613a62d4c21c'
             '89b56845c3e937471769bc9507519f1ec27d0b64ebbb455e0ea06a7ad46c6f70'
+            'ade3c6c8edf0b13c9c8bacd1d3cec85b0eef82563fee9a3d12244d83f56cfb59'
             '2b40461f3f68f5816a167e4a3658e7cc816536e9c5728e2844d710b9f5e1d192')
 
 prepare() {
-        cd "${srcdir}/${pkgname}"
+        cd "${srcdir}/${pkgname}-${pkgver}"
 
 	patch -Np1 -i ../ndebug.patch
         ./autogen.sh
 }
 
 build() {
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	./configure --sysconfdir=/etc --prefix=/usr
+	./configure --sysconfdir=/etc --prefix=/usr --disable-spotify
 	make src/config.h
 	make
 }
 
 package() {
-	cd "${srcdir}/${pkgname}"
+	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	make DESTDIR="$pkgdir" install
+	make DESTDIR="${pkgdir}" install
 
 	# additional files
 	install -Dm644 ../mpd.png ${pkgdir}/usr/share/upmpdcli/icon.png
 	install -Dm644 ../upmpdcli.service ${pkgdir}/usr/lib/systemd/system/upmpdcli.service
+	install -Dm644 ../upmpdcli.sysusers ${pkgdir}/usr/lib/sysusers.d/upmpdcli.conf
 
 	# tweak persmissions of configuration file
 	chmod 0644 ${pkgdir}/etc/upmpdcli.conf
 
 	# remove all plugins
-        rm -rf ${pkgdir}/usr/share/upmpdcli/cdplugins/*
+	rm -rf ${pkgdir}/usr/share/upmpdcli/cdplugins/*
+	rmdir ${pkgdir}/usr/share/upmpdcli/cdplugins
 }
