@@ -1,8 +1,8 @@
 # Maintainer: Edmunt Pienkowsky <roed@onet.eu>
 
 pkgname=libupnpp
-pkgver=0.16.1
-pkgrel=2
+pkgver=0.17.2
+pkgrel=1
 pkgdesc="A C++ wrapper for libupnp - used with upmpdcli or upplay"
 url="https://www.lesbonscomptes.com/upmpdcli/index.html"
 arch=('x86_64' 'i686' 'armv6h' 'armv7h' 'aarch64')
@@ -10,17 +10,14 @@ license=('GPL2')
 makedepends=('git' 'automake')
 depends=('libupnp' 'expat' 'curl')
 source=("http://www.lesbonscomptes.com/upmpdcli/downloads/${pkgname}-${pkgver}.tar.gz"
-	'ndebug.patch'
-	'missing-macros.patch')
-sha256sums=('d2ab5a4bb6df035ddddd11542bd4631ab7031354259145f07fbc3c56a8f50fac'
-            'fff9b9305e3ee33f3e61e55800be577d1f69408a9a5c07f0f6962069f99060fc'
-            '04fe8e0d7034c7fb903345174ef1d54f9a0d681830ebfcdfa5017513bf85af80')
+	'0001-Remove-DEBUG-macro.patch')
+sha256sums=('5abaaf353a1e9c3482d61ef2627b650285d59f27c1ee60d35b8951952261374f'
+            '11de7b0e23ab63289ab9e07ef1ef059833344a1794e7f25e969815c6e13a014a')
 
 prepare(){
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
-	patch -Np1 -i ../ndebug.patch
-	patch -Np1 -i ../missing-macros.patch
+	git apply ../0001-Remove-DEBUG-macro.patch
 	./autogen.sh
 }
 

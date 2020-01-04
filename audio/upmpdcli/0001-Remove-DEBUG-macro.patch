@@ -1,0 +1,19 @@
+From 959e5708c3db390569536f066f70816af325d7ef Mon Sep 17 00:00:00 2001
+From: Edmunt Pienkowsky <roed@onet.eu>
+Date: Sat, 4 Jan 2020 10:31:11 +0100
+Subject: [PATCH] Remove DEBUG macro
+
+
+diff --git a/Makefile.am b/Makefile.am
+index b07950d..a7ca207 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,4 +1,4 @@
+-AM_CPPFLAGS = -DDEBUG -g -Wall \
++AM_CPPFLAGS = -g -Wall \
+ 	    -DMDU_INCLUDE_LOG='<libupnpp/log.h>' \
+             $(upnpp_CFLAGS) \
+             $(libmpdclient_CFLAGS) \
+-- 
+2.24.1
+
