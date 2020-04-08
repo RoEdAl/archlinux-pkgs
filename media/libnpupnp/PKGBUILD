@@ -1,0 +1,29 @@
+pkgname=libnpupnp
+pkgver=2.2.1
+pkgrel=1
+pkgdesc='UPnP library derived from the venerable pupnp (https://github.com/pupnp/pupnp)'
+# _commit_epoch=$(git show -s --format=%ct)
+_commit_epoch=1585915378
+arch=('i686' 'x86_64' 'armv6h' 'armv7h')
+url="http://www.lesbonscomptes.com/upmpdcli/index.html"
+license=('BSD')
+depends=('curl' 'expat' 'libmicrohttpd')
+makedepends=('pkgconfig')
+source=("http://www.lesbonscomptes.com/upmpdcli/downloads/${pkgname}-${pkgver}.tar.gz")
+md5sums=('d4c73502f71eafee3fbc2c60ef90e650')
+
+prepare() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  autoreconf -vi
+}
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  ./configure --prefix=/usr --sysconfdir=/etc --enable-ipv6 --enable-reuseaddr
+  env SOURCE_DATE_EPOCH=${_commit_epoch} make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  env SOURCE_DATE_EPOCH=${_commit_epoch} make DESTDIR=${pkgdir} install
+}

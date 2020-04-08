@@ -1,14 +1,14 @@
 # Maintainer: Edmunt Pienkowsky <roed@onet.eu>
 
 pkgname=upmpdcli
-pkgver=1.4.5
+pkgver=1.4.7
 pkgrel=1
 pkgdesc="A UPnP Media Renderer front-end for the Music Player Daemon (MPD)"
 arch=('x86_64' 'armv6h' 'armv7h' 'aarch64')
 url="http://www.lesbonscomptes.com/upmpdcli/"
 license=('LGPL')
 makedepends=('git' 'automake')
-depends=('libmpdclient' 'libupnpp>0.17' 'libmicrohttpd' 'jsoncpp' 'curl')
+depends=('libmpdclient' 'libupnpp>0.18' 'libmicrohttpd' 'jsoncpp' 'curl')
 optdepends=('mpd' 'python2')
 backup=('etc/upmpdcli.conf')
 source=("http://www.lesbonscomptes.com/upmpdcli/downloads/${pkgname}-${pkgver}.tar.gz"
@@ -18,7 +18,7 @@ source=("http://www.lesbonscomptes.com/upmpdcli/downloads/${pkgname}-${pkgver}.t
 	'0001-Remove-DEBUG-macro.patch'
 )
 
-sha256sums=('af0c13b6ab8720d98451307010c33462e9a3f50178bae82c593fd2dd12e31b0e'
+sha256sums=('55dec356c98e16f00b1e547f9f4a1c03756317102e91982f93eca8cc4eda115e'
             'c256258aefa9aa0347504e197aef9426849403dc0c64638fc154613a62d4c21c'
             '89b56845c3e937471769bc9507519f1ec27d0b64ebbb455e0ea06a7ad46c6f70'
             'ade3c6c8edf0b13c9c8bacd1d3cec85b0eef82563fee9a3d12244d83f56cfb59'
